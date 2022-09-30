@@ -33,7 +33,7 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            // Carrot fire (pew pew)
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
         }
     
     }
