@@ -309,6 +309,7 @@ GameObject:
   - component: {fileID: 3109823817857831429}
   - component: {fileID: 3109823817864799077}
   - component: {fileID: 3109823818813232520}
+  - component: {fileID: 8127868581411283861}
   m_Layer: 0
   m_Name: Large_Enemy_Rooster
   m_TagString: Untagged
@@ -372,6 +373,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+--- !u!114 &8127868581411283861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3109823817857487541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55bbac28d766354d9f6bb4e73474634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3109823817857487877
 GameObject:
   m_ObjectHideFlags: 0

@@ -263,6 +263,7 @@ GameObject:
   - component: {fileID: 4881736447625655358}
   - component: {fileID: 4881736447618061680}
   - component: {fileID: 4881736447805772638}
+  - component: {fileID: 3274222677218715846}
   m_Layer: 0
   m_Name: Small_Enemy_Chicken
   m_TagString: Untagged
@@ -320,6 +321,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 15
+--- !u!114 &3274222677218715846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4881736447625440454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d55bbac28d766354d9f6bb4e73474634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4881736447625448902
 GameObject:
   m_ObjectHideFlags: 0
