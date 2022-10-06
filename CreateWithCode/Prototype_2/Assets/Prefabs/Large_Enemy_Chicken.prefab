@@ -1340,6 +1340,8 @@ GameObject:
   - component: {fileID: 1082101663583324982}
   - component: {fileID: 1082101662228705732}
   - component: {fileID: 4491931373367445082}
+  - component: {fileID: 5543718190453947504}
+  - component: {fileID: 2061127086}
   m_Layer: 0
   m_Name: Large_Enemy_Chicken
   m_TagString: Untagged
@@ -1413,5 +1415,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d55bbac28d766354d9f6bb4e73474634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &5543718190453947504
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082101663573893178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11, y: 11, z: 11}
+  m_Center: {x: 0, y: 6, z: 0}
+--- !u!114 &2061127086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082101663573893178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a7614910599ab24fa6b9bb4bfa4b9e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
