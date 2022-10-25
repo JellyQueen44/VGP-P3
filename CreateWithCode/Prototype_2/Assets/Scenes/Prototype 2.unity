@@ -568,7 +568,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalInput: 0
   speed: 20
-  xRange: 10
+  xRange: 20
   projectilePrefab: {fileID: 2516718029600938409, guid: f23b3d1306a33eb4b9beb9070be43bfe, type: 3}
 --- !u!1 &1590138454
 GameObject:
@@ -724,7 +724,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100000, guid: f3f69bcf5a1514c458ed5c9b96f28e34, type: 3}
       propertyPath: m_Name
-      value: SimpleFarmer_Woman_02_Brown
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f3f69bcf5a1514c458ed5c9b96f28e34, type: 3}
       propertyPath: m_RootOrder

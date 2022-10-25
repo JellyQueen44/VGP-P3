@@ -20,7 +20,7 @@ public class DestroyOutOfBounds : MonoBehaviour
             Destroy(gameObject);
         } else if(transform.position.z < lowerBound)
         {
-            Debug.Log("Chickened Out");
+            Debug.Log("Chickened Out!");
             Destroy(gameObject);
         }
     }
