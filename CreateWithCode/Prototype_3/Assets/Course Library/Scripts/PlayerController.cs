@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody playerRB;
+    private Rigidbody playerRb;
+    private Animator playerAm;
     public float jumpForce;
     public float gravityModifier;
     public bool isOnGround = true;
@@ -12,7 +13,8 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerRB = GetComponent<Rigidbody>();
+        playerRb = GetComponent<Rigidbody>();
+        playerAm = GetComponent<Animator>();
         Physics.gravity *= gravityModifier;
     }
 
@@ -21,8 +23,9 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
-            playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
+            playerAm.SetTrigger("Jump_trig");
         }
     }
     private void OnCollisionEnter(Collision collision)
