@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
     private Animator playerAm;
+    public ParticleSystem explosionParticle;
+    public ParticleSystem dirtParticle;
     public float jumpForce;
     public float gravityModifier;
     public bool isOnGround = true;
@@ -26,6 +28,7 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
             playerAm.SetTrigger("Jump_trig");
+            dirtParticle.Stop();
         }
     }
     private void OnCollisionEnter(Collision collision)
@@ -34,12 +37,15 @@ public class PlayerController : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+            dirtParticle.Play();
         } else if(collision.gameObject.CompareTag("Obstacle"))
         {
             Debug.Log("Absolutely Spooled!");
             gameOver = true;
             playerAm.SetBool("Death_b", true);
             playerAm.SetInteger("DeathType_int", 1);
+            explosionParticle.Play();
+            dirtParticle.Stop();
         }
     }
 }
