@@ -74,7 +74,7 @@ public class PlayerControllerX : MonoBehaviour
             Destroy(other.gameObject);
 
         }
-        else if (other.gameObject.CompareTag("Ground"))
+        else if (other.gameObject.CompareTag("Ground") && !gameOver)
         {
             playerRb.AddForce(Vector3.up * bounce, ForceMode.Impulse);
             playerAudio.PlayOneShot(bounceSound, 1.0f);
