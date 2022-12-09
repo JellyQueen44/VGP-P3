@@ -29,11 +29,24 @@ public class PlayerController : MonoBehaviour
         {
             hasPowerup = true;
             Destroy(other.gameObject);
+            StartCoroutine(PowerUpCountdownRoutine());
         }
     }
-    
-    private void OnCollisionEnter(Collision other)
+    IEnumerator PowerUpCountdownRoutine()
     {
-        
+        yield return new WaitForSeconds(7);
+        hasPowerup = false;
+    }
+    
+    private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.CompareTag("Enemy") && hasPowerup)
+        {
+            Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
+            Vector3 pushAway = collision.gameObject.transform.position - transform.position;
+
+            enemyRb.AddForce(pushAway * 10, ForceMode.Impulse);
+            Debug.Log("Collided with: " + collision.gameObject.name + "with powerup set to " + hasPowerup);
+        }
     }
 }
