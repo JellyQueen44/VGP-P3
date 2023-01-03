@@ -4,9 +4,13 @@ using UnityEngine;
 
 public class PlayerControllerX : MonoBehaviour
 {
+    private float speed = 400f;
+    private float sprintSpeed = 800f;
+    private float currentSpeed;
+
     private Rigidbody playerRb;
-    private float speed = 500;
     private GameObject focalPoint;
+    public ParticleSystem dirtParticle;
 
     public bool hasPowerup;
     public GameObject powerupIndicator;
@@ -27,6 +31,20 @@ public class PlayerControllerX : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         playerRb.AddForce(focalPoint.transform.forward * verticalInput * speed * Time.deltaTime); 
 
+        if (Input.GetKey(KeyCode.Space))
+        {
+            playerRb.AddForce(focalPoint.transform.forward * verticalInput * sprintSpeed * Time.deltaTime);
+        }
+
+        if (currentSpeed < 200)
+        {
+            currentSpeed = (speed * Time.deltaTime);
+            dirtParticle.Stop();
+        }
+        else
+        {
+            dirtParticle.Play();
+        }
         // Set powerup indicator position to beneath player
         powerupIndicator.transform.position = transform.position + new Vector3(0, -0.6f, 0);
 
