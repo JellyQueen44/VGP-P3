@@ -13,6 +13,7 @@ public class PlayerControllerX : MonoBehaviour
     public ParticleSystem dirtParticle;
 
     public bool hasPowerup;
+    public bool isSprinting;
     public GameObject powerupIndicator;
     public int powerUpDuration = 5;
 
@@ -34,14 +35,13 @@ public class PlayerControllerX : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             playerRb.AddForce(focalPoint.transform.forward * verticalInput * sprintSpeed * Time.deltaTime);
+            isSprinting = true;
+        }else
+        {
+            isSprinting = false;
         }
 
-        if (currentSpeed < 200)
-        {
-            currentSpeed = (speed * Time.deltaTime);
-            dirtParticle.Stop();
-        }
-        else
+        if (isSprinting == true)
         {
             dirtParticle.Play();
         }
