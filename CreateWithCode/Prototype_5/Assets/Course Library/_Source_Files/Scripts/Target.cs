@@ -19,7 +19,7 @@ public class Target : MonoBehaviour
         targetRb.AddForce(RandomForce(), ForceMode.Impulse);
         targetRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
 
-        transform.position = new Vector3(Random.Range(-xRange, xRange), -ySpawnPos);
+        transform.position = RandomSpawn();
     }
 
     // Update is called once per frame
@@ -36,6 +36,11 @@ public class Target : MonoBehaviour
     float RandomTorque()
     {
         return Random.Range(-maxTorque, maxTorque);
+    }
+
+    Vector3 RandomSpawn()
+    {
+        return new Vector3(Random.Range(-xRange, xRange), -ySpawnPos);
     }
 
 }
