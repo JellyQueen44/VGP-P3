@@ -1,33 +1,31 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DifficultyButton : MonoBehaviour
+public class DifficultyButtonX : MonoBehaviour
 {
     private Button button;
-    private GameManager gameManager;
-
+    private GameManagerX gameManagerX;
     public int difficulty;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManagerX = GameObject.Find("Game Manager").GetComponent<GameManagerX>();
         button = GetComponent<Button>();
-        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-
         button.onClick.AddListener(SetDifficulty);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /* When a button is clicked, call the StartGame() method
+     * and pass it the difficulty value (1, 2, 3) from the button 
+    */
     void SetDifficulty()
     {
         Debug.Log(button.gameObject.name + " was clicked");
-        gameManager.StartGame(difficulty);
+        gameManagerX.StartGame();
     }
+
+
+
 }
