@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     //private vehicles mechanics
-    private float speed = 5.0f;
-    private float turnSpeed = 25.0f;
-    private float horizontalInput;
-    private float forwardInput;
+    [SerializeField] float speed = 5.0f;
+    [SerializeField] float turnSpeed = 25.0f;
+    [SerializeField] float horizontalInput;
+    [SerializeField] float forwardInput;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         //The player input is here
         horizontalInput = Input.GetAxis("Horizontal");
