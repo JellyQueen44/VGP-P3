@@ -5,15 +5,18 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     //private vehicles mechanics
-    [SerializeField] float speed = 5.0f;
+    [SerializeField] float horsePower = 500f;
     [SerializeField] float turnSpeed = 25.0f;
     [SerializeField] float horizontalInput;
     [SerializeField] float forwardInput;
+    private Rigidbody playerRb;
+    [SerializeField] GameObject centerOfMass;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        playerRb = GetComponent<Rigidbody>();
+        playerRb.centerOfMass = centerOfMass.transform.position;
     }
 
     // Update is called once per frame
@@ -24,7 +27,7 @@ public class PlayerController : MonoBehaviour
         forwardInput = Input.GetAxis("Vertical");
         
         //Car is movin! Wowie, this moves the car
-        transform.Translate(Vector3.forward * Time.deltaTime * speed * forwardInput);
+        playerRb.AddRelativeForce(Vector3.forward * forwardInput * horsePower);
         // And this does, in fact, turn the car
         transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
     }
