@@ -1,20 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
-    //private vehicles mechanics
-    [SerializeField] float horsePower = 500f;
-    [SerializeField] float turnSpeed = 25.0f;
-    [SerializeField] float horizontalInput;
-    [SerializeField] float forwardInput;
+    [SerializeField] float speed;
+    [SerializeField] float rpm;
+    [SerializeField] private float horsePower = 0;
+    [SerializeField] float turnSpeed = 30.0f;
+    private float horizontalInput;
+    private float forwardInput;
     private Rigidbody playerRb;
-    [SerializeField] GameObject centerOfMass;
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] GameObject centerOfMass;
+    [SerializeField] TextMeshProUGUI speedometerText;
+    [SerializeField] TextMeshProUGUI rpmText;
+
+    [SerializeField] List<WheelCollider> allWheels;
+    [SerializeField] int wheelsOnGround;
+
+    private void Start()
     {
+        //Funky Components + CenterOfMass
         playerRb = GetComponent<Rigidbody>();
         playerRb.centerOfMass = centerOfMass.transform.position;
     }
@@ -22,13 +30,44 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        //The player input is here
+        //Player Input for Shmovement
         horizontalInput = Input.GetAxis("Horizontal");
         forwardInput = Input.GetAxis("Vertical");
-        
-        //Car is movin! Wowie, this moves the car
-        playerRb.AddRelativeForce(Vector3.forward * forwardInput * horsePower);
-        // And this does, in fact, turn the car
-        transform.Rotate(Vector3.up, turnSpeed * horizontalInput * Time.deltaTime);
+
+        if (IsOnGround())
+        {
+            //Shmovement
+            playerRb.AddRelativeForce(Vector3.forward * forwardInput * horsePower);
+            transform.Rotate(Vector3.up * Time.deltaTime * turnSpeed * horizontalInput);
+
+            //The Speed in Kilometers, just a better measuring system
+            speed = Mathf.RoundToInt(playerRb.velocity.magnitude * 3.6f);
+            speedometerText.SetText("Speed: " + speed + " kph");
+
+            //RPM, Rotations, Idk why you need it but you do
+            rpm = Mathf.Round((speed % 30) * 40);
+            rpmText.SetText("RPM: " + rpm);
+        }
     }
+
+    bool IsOnGround()
+    {
+        //Keep Those Legs On The Ground
+        wheelsOnGround = 0;
+        foreach (WheelCollider wheel in allWheels)
+        {
+            if (wheel.isGrounded)
+            {
+                wheelsOnGround++;
+            }
+        }
+        if (wheelsOnGround == 4)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    }
+    
 }
