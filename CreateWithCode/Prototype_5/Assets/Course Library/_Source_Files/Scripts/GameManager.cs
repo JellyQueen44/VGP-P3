@@ -8,11 +8,18 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> targets;
+
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI gameOverText;
     public TextMeshProUGUI livesText;
+
     public Button restartButton;
+    public TextMeshProUGUI gameOverText; 
+
     public GameObject titleScreen;
+
+    public GameObject pauseScreen;
+    private bool paused;
+
     public bool isGameActive;
     public int lives;
     private int score;
@@ -82,5 +89,21 @@ public class GameManager : MonoBehaviour
         UpdateScore(0); 
 
         titleScreen.gameObject.SetActive(false);
+    }
+
+    void ChangePaused()
+    {
+        if (!paused)
+        {
+            paused = true;
+            pauseScreen.SetActive(true);
+            Time.timeScale = 0;
+        }
+        else
+        {
+            paused = false;
+            pauseScreen.SetActive(false);
+            Time.timeScale = 1;
+        }
     }
 }
