@@ -20,6 +20,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] List<WheelCollider> allWheels;
     [SerializeField] int wheelsOnGround;
 
+    private bool Cam;
+    public GameObject primaryCamera;
+    public GameObject secondaryCamera;
+
     private void Start()
     {
         //Funky Components + CenterOfMass
@@ -48,6 +52,12 @@ public class PlayerController : MonoBehaviour
             rpm = Mathf.Round((speed % 30) * 40);
             rpmText.SetText("RPM: " + rpm);
         }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            ChangeCamera();
+        }
+
     }
 
     bool IsOnGround()
@@ -69,5 +79,20 @@ public class PlayerController : MonoBehaviour
             return false;
         }
     }
-    
+
+    void ChangeCamera()
+    {
+        if (!Cam)
+        {
+            Cam = true;
+            primaryCamera.SetActive(true);
+            secondaryCamera.SetActive(false);
+        }
+        else
+        {
+            Cam = false;
+            secondaryCamera.SetActive(true);
+            primaryCamera.SetActive(false);
+        }
+    }
 }

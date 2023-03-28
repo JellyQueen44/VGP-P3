@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpawnManagerX : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public GameObject powerupPrefab;
+    public GameObject[] powerupPrefabs;
 
     private float spawnRangeX = 10;
     private float spawnZMin = 15; // set min spawn Z
@@ -18,6 +18,14 @@ public class SpawnManagerX : MonoBehaviour
     public GameObject player; 
 
     // Update is called once per frame
+
+    void Start()
+    {
+        int randomPowerup = Random.Range(0, powerupPrefabs.Length);
+        Instantiate(powerupPrefabs[randomPowerup], GenerateSpawnPosition(), powerupPrefabs[randomPowerup].transform.rotation);
+        SpawnEnemyWave(waveNumber);
+    }
+
     void Update()
     {
         enemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
@@ -25,6 +33,8 @@ public class SpawnManagerX : MonoBehaviour
         if (enemyCount == 0)
         {
             SpawnEnemyWave(waveCount);
+            int randomPowerup = Random.Range(0, powerupPrefabs.Length);
+            Instantiate(powerupPrefabs[randomPowerup], GenerateSpawnPosition(), powerupPrefabs[randomPowerup].transform.rotation);
         }
 
     }
@@ -43,9 +53,9 @@ public class SpawnManagerX : MonoBehaviour
         Vector3 powerupSpawnOffset = new Vector3(0, 0, -15); // make powerups spawn at player end
 
         // If no powerups remain, spawn a powerup
-        if (GameObject.FindGameObjectsWithTag("Powerup").Length == 0) // check that there are zero powerups
+        if (GameObject[].FindGameObjectsWithTag("Powerup").Length == 0); // check that there are zero powerups
         {
-            Instantiate(powerupPrefab, GenerateSpawnPosition() + powerupSpawnOffset, powerupPrefab.transform.rotation);
+            Instantiate(powerupPrefabs, GenerateSpawnPosition() + powerupSpawnOffset, powerupPrefabs.transform.rotation);
         }
 
         // Spawn number of enemy balls based on wave number
