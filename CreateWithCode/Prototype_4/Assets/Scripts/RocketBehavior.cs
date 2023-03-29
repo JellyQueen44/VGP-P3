@@ -5,7 +5,6 @@ using UnityEngine;
 public class RocketBehavior : MonoBehaviour
 {
     private Transform target;
-    private Transform homingTarget;
     private float speed = 15.0f;
     private bool homing;
     private float rocketStrength = 15.0f;
@@ -13,7 +12,6 @@ public class RocketBehavior : MonoBehaviour
 
     public void Fire(Transform newTarget)
     {
-        target = homingTarget;
         homing = true;
         Destroy(gameObject, aliveTimer);
     }
@@ -24,8 +22,7 @@ public class RocketBehavior : MonoBehaviour
     {
         if(homing && target != null)
         {
-            Vector3 moveDirection = (target.transform.position -
-            transform.position).normalized;
+            Vector3 moveDirection = (target.transform.position - transform.position).normalized;
             transform.position += moveDirection * speed * Time.deltaTime;
             transform.LookAt(target);
         }
